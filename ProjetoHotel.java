@@ -55,6 +55,11 @@ public class ProjetoHotel {
         String nome = scanner.nextLine();
         System.out.print("Email do hospede: ");
         String email = scanner.nextLine();
+
+        if (!VerificarInfos(nome, email)) {
+            return;
+        }
+
         System.out.print("Numero do quarto (1-100): ");
         int numero = scanner.nextInt();
         scanner.nextLine();
@@ -70,6 +75,24 @@ public class ProjetoHotel {
         } else {
             System.out.println("Quarto ja esta ocupado.");
         }
+    }
+
+    public static boolean VerificarInfos(String nome, String email) {
+        for (int i = 0; i < 100; i++) {
+            if (hospedes[i] != null && hospedes[i].getEmail().equals(email)) {
+                System.out.println("Hospede ja possui reserva.");
+                return false;
+            }
+        }
+        if (nome.isEmpty() || email.isEmpty()) {
+            System.out.println("Nome e email sao obrigatorios.");
+            return false;
+        }
+        if (!email.contains("@") || !email.contains(".")) {
+            System.out.println("Email invalido.");
+            return false;
+        }
+        return true;
     }
 
     public static void cancelarReserva(Scanner scanner) {
