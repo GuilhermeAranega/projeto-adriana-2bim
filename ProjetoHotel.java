@@ -79,17 +79,13 @@ public class ProjetoHotel {
 
     public static boolean VerificarInfos(String nome, String email) {
         for (int i = 0; i < 100; i++) {
-            if (hospedes[i] != null && hospedes[i].getEmail().equals(email)) {
+            if (hospedes[i] != null && hospedes[i].getEmail() == email) {
                 System.out.println("Hospede ja possui reserva.");
                 return false;
             }
         }
-        if (nome.isEmpty() || email.isEmpty()) {
+        if (nome == "" || email == "") {
             System.out.println("Nome e email sao obrigatorios.");
-            return false;
-        }
-        if (!email.contains("@") || !email.contains(".")) {
-            System.out.println("Email invalido.");
             return false;
         }
         return true;
@@ -165,10 +161,10 @@ public class ProjetoHotel {
         System.out.print("Novo email (pressione Enter para manter): ");
         String novoEmail = scanner.nextLine();
 
-        if (!novoNome.isEmpty()) {
+        if (novoNome != "") {
             hospedes[numero - 1].setNome(novoNome);
         }
-        if (!novoEmail.isEmpty()) {
+        if (novoEmail != "") {
             hospedes[numero - 1].setEmail(novoEmail);
         }
 
